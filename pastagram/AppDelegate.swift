@@ -11,8 +11,8 @@ import Parse
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-
-
+    var window: UIWindow?
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         let parseConfig = ParseClientConfiguration {
@@ -22,9 +22,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         Parse.initialize(with: parseConfig)
         
+        
+                if PFUser.current() != nil {
+                    let main = UIStoryboard(name: "Main", bundle: nil)
+                    let feedNavigationController = main.instantiateViewController(withIdentifier: "FeedNavigationController")
+        
+                    window?.rootViewController = feedNavigationController
+        
+                }
+        
         return true
     }
 
+    
     // MARK: UISceneSession Lifecycle
 
     func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {

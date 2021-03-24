@@ -6,18 +6,66 @@
 //
 
 import UIKit
+import Parse
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
 
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        // Override point for customization after application launch.
+        let parseConfig = ParseClientConfiguration {
+                $0.applicationId = "i6n8xSu1IQRZDtjgsfuyDHx4FdlzIYAa71T0r33G" // <- UPDATE
+                $0.clientKey = "0xAsprkiVeAVr0cEdkvgIg3yTmuNKG7xhC0MHEYg" // <- UPDATE
+                $0.server = "https://parseapi.back4app.com"
+        }
+        Parse.initialize(with: parseConfig)
+        
+//        if PFUser.current() != nil {
+//            let main = UIStoryboard(name: "Main", bundle: nil)
+//            let feedNavigationController = main.instantiateViewController(withIdentifier: "FeedNavigationController")
+//
+//            window?.rootViewController = feedNavigationController
+//
+//        }
+        
+        return true
+    }
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
+        
+//        NotificationCenter.default.addObserver(forName: Notification.Name("login"), object: nil, queue: OperationQueue.main){
+//            (Notification) in
+//            print("Logout notification received")
+//            
+//            self.login()
+//        }
+        
+//        NotificationCenter.default.addObserver(forName: Notification.Name("didLogout"), object: nil, queue: OperationQueue.main){
+//            (Notification) in
+//            print("Logout notification received")
+//            
+//            self.logOut()
+//        }
+        
+//        if PFUser.current() != nil {
+//            login()
+//        }
+        
+        
         guard let _ = (scene as? UIWindowScene) else { return }
+        
     }
+    
+//    func login(){
+//        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//        
+//        window?.rootViewController = storyboard.instantiateViewController(withIdentifier: "feedNavigationController")
+//    }
+    
 
     func sceneDidDisconnect(_ scene: UIScene) {
         // Called as the scene is being released by the system.
